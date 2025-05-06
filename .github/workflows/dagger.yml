@@ -14,14 +14,16 @@ jobs:
           version: "latest"
           verb: functions
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-      - uses: dagger/dagger-for-github@8.0.0
+      - name: OpenAI
+        uses: dagger/dagger-for-github@8.0.0
         with:
           version: "latest"
           verb: call
           args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      - uses: dagger/dagger-for-github@8.0.0
+      - name: Google Gemini
+        uses: dagger/dagger-for-github@8.0.0
         with:
           version: "latest"
           verb: call
