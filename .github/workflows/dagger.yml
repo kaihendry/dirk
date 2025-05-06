@@ -21,3 +21,10 @@ jobs:
           args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - uses: dagger/dagger-for-github@8.0.0
+        with:
+          version: "latest"
+          verb: call
+          args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
