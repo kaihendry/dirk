@@ -5,28 +5,38 @@ on:
     branches: [main]
 
 jobs:
-  runllm:
+  OpenAI:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dagger/dagger-for-github@8.0.0
         with:
           version: "latest"
-          verb: functions
-          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-      - name: OpenAI
-        uses: dagger/dagger-for-github@8.0.0
-        with:
-          version: "latest"
           verb: call
           args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      - name: Google Gemini
-        uses: dagger/dagger-for-github@8.0.0
-        with:
-          version: "latest"
-          verb: call
-          args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  Gemini:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: dagger/dagger-for-github@8.0.0
+      with:
+        version: "latest"
+        verb: call
+        args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
+        cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  Anthropic:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: dagger/dagger-for-github@8.0.0
+      with:
+        version: "latest"
+        verb: call
+        args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
+        cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+      env:
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      
