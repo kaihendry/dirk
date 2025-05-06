@@ -9,10 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # is Docker needed?
-      # uses: docker/setup-docker-action@v4
       - uses: dagger/dagger-for-github@8.0.0
         with:
           version: "latest"
           verb: functions
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+      - uses: dagger/dagger-for-github@8.0.0
+        with:
+          version: "latest"
+          verb: call
+          args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
