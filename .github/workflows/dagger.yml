@@ -20,23 +20,23 @@ jobs:
   Gemini:
     runs-on: ubuntu-latest
     steps:
-    - uses: dagger/dagger-for-github@8.0.0
-      with:
-        version: "latest"
-        verb: call
-        args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
-        cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      - uses: dagger/dagger-for-github@8.0.0
+        with:
+          version: "latest"
+          verb: call
+          args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   Anthropic:
     runs-on: ubuntu-latest
     steps:
-    - uses: dagger/dagger-for-github@8.0.0
-      with:
-        version: "latest"
-        verb: call
-        args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
-        cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-      env:
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      
+      - uses: dagger/dagger-for-github@8.0.0
+        with:
+          version: "latest"
+          verb: call
+          args: 'go-program --assignment "write me a curl clone to a main.go ensure workdir points there" file --path "./main.go" contents' 
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
