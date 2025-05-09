@@ -1,8 +1,6 @@
 name: dagger
 
-on:
-  push:
-    branches: [main]
+on: ['push', 'workflow_dispatch']
 
 jobs:
   OpenAI:
